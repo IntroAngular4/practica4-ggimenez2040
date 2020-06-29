@@ -1,0 +1,44 @@
+<div>
+  <h1 *ngIf="!this.projectId">Lista de Proyectos</h1>
+  <h1 *ngIf="this.projectId && this.projectId!=''">Lista de Proyectos Detalle</h1>
+
+  <p *ngIf="numProjects>0;else sinProyectos">Actualmente tenemos {{numProjects}} proyectos vigentes</p>
+
+  <ng-template #sinProyectos>
+    <p>Sin proyectos</p>
+  </ng-template>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre Proyecto</th>
+        <th *ngIf="!this.projectId">Ver</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of projects">
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+        <td *ngIf="!this.projectId"><a routerLink={{item.id}}
+             class="button"> <span>Visualizar</span> </a></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<div>
+
+  <h3>Visualización de un proyecto existente</h3>
+
+  <form>
+
+    <label for="id">Id: {{this.projectId}}</label>
+    <a *ngIf="this.projectId && this.projectId!=''"
+       routerLink="../"
+       class="button"> <span>Volver</span> </a>
+
+  </form>
+
+</div>
