@@ -1,8 +1,47 @@
-<div>
-  <h1 *ngIf="!this.projectId">Lista de Proyectos</h1>
-  <h1 *ngIf="this.projectId && this.projectId!=''">Lista de Proyectos Detalle</h1>
+<app-filter-projects-form-component (findProject)="findProject($event)"></app-filter-projects-form-component>
 
-  <p *ngIf="numProjects>0;else sinProyectos">Actualmente tenemos {{numProjects}} proyectos vigentes</p>
+<!--
+
+<div>
+
+  <h3>Buscar proyecto</h3>
+
+  <form>
+
+    <fieldset>
+
+      <section>
+
+        <label for="name">Nombre</label>
+
+        <input #name
+               name="name"
+               type="text"
+               placeholder="Nombre Proyecto" />
+
+      </section>
+
+      <input value="Buscar"
+             type="submit"
+             (click)="findProject(name.value)" />
+
+    </fieldset>
+
+  </form>
+
+</div>
+
+-->
+
+<app-dashboard-component [projects]=projects
+                         [projectId]=projectId></app-dashboard-component>
+
+<!--
+<div>
+  <h3 *ngIf="!this.projectId">Lista de Proyectos</h3>
+  <h3 *ngIf="this.projectId && this.projectId!=''">Lista de Proyectos Detalle</h3>
+
+  <p *ngIf="projects.length>0;else sinProyectos">Actualmente tenemos {{projects.length}} proyectos vigentes</p>
 
   <ng-template #sinProyectos>
     <p>Sin proyectos</p>
@@ -27,7 +66,12 @@
   </table>
 
 </div>
+-->
 
+<app-viewer-project-form-component *ngIf="this.projectId && this.projectId!=''"
+                                   [projectId]=projectId></app-viewer-project-form-component>
+
+<!--
 <div>
 
   <h3>Visualización de un proyecto existente</h3>
@@ -42,3 +86,4 @@
   </form>
 
 </div>
+-->

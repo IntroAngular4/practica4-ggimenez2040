@@ -1,0 +1,28 @@
+<div>
+
+  <h3>Buscar proyecto</h3>
+
+  <form>
+
+    <fieldset>
+
+      <section>
+
+        <label for="name">Nombre</label>
+
+        <input #name
+               name="name"
+               type="text"
+               placeholder="Nombre Proyecto" />
+
+      </section>
+
+      <input value="Buscar"
+             type="submit"
+             (click)="findProjectByName(name.value)" />
+
+    </fieldset>
+
+  </form>
+
+</div>

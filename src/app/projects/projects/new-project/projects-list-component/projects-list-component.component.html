@@ -1,0 +1,25 @@
+<div>
+  <h1>Lista de Proyectos</h1>
+
+  <p *ngIf="projects.length>0;else sinProyectos">Actualmente tenemos {{projects.length}} proyectos vigentes</p>
+
+  <ng-template #sinProyectos>
+    <p>Sin proyectos</p>
+  </ng-template>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre Proyecto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of projects">
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

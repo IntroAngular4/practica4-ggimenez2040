@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { environment } from '../../../../environments/environment';
+import { ProjectsService } from '../../../core/services/projects.service';
 import { Project } from '../../../shared/models/project.model';
 
 @Component({
@@ -10,21 +10,19 @@ import { Project } from '../../../shared/models/project.model';
 })
 export class ViewerProjectComponent implements OnInit {
   public projects: Project[] = [];
-  public numProjects: number;
   public project: Project;
   public formHidden = false;
   public projectId = '';
 
-  constructor(activateRoute: ActivatedRoute) {
+  constructor(private projectsService: ProjectsService, activateRoute: ActivatedRoute) {
     this.projectId = activateRoute.snapshot.params.id;
   }
 
   ngOnInit(): void {
-    environment.projects.forEach(e => {
-      const currentProject: Project = e;
-      this.projects.push(currentProject);
-    });
+    this.projects = this.projectsService.projects;
+  }
 
-    this.numProjects = this.projects.length;
+  public findProject(name: string) {
+    this.projects = this.projects.filter(p => p.name.includes(name) === true);
   }
 }

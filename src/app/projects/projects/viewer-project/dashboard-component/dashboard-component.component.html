@@ -1,0 +1,29 @@
+<div>
+  <h3 *ngIf="!this.projectId">Lista de Proyectos</h3>
+  <h3 *ngIf="this.projectId && this.projectId!=''">Lista de Proyectos Detalle</h3>
+
+  <p *ngIf="projects.length>0;else sinProyectos">Actualmente tenemos {{projects.length}} proyectos vigentes</p>
+
+  <ng-template #sinProyectos>
+    <p>Sin proyectos</p>
+  </ng-template>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre Proyecto</th>
+        <th *ngIf="!this.projectId">Ver</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of projects">
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+        <td *ngIf="!this.projectId"><a routerLink={{item.id}}
+             class="button"> <span>Visualizar</span> </a></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

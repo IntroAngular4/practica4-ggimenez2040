@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../../../environments/environment';
+import { ProjectsService } from '../../../core/services/projects.service';
 import { Project } from '../../../shared/models/project.model';
 
 @Component({
@@ -9,23 +9,15 @@ import { Project } from '../../../shared/models/project.model';
 })
 export class NewProjectComponent implements OnInit {
   public projects: Project[] = [];
-  public numProjects: number;
-  public project: Project;
   public formHidden = false;
 
-  constructor() {}
+  constructor(private projectsService: ProjectsService) {}
 
   ngOnInit(): void {
-    environment.projects.forEach(e => {
-      const currentProject: Project = e;
-      this.projects.push(currentProject);
-    });
-
-    this.numProjects = this.projects.length;
+    this.projects = this.projectsService.projects;
   }
 
-  public saveProject(id: number, name: string) {
-    const currentProject = { id, name };
-    this.projects.push(currentProject);
+  public saveProject(project: Project) {
+    this.projectsService.saveProject(project);
   }
 }
