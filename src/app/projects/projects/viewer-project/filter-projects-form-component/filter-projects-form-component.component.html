@@ -8,18 +8,18 @@
 
       <section>
 
-        <label for="name">Nombre</label>
+        <label for="id">Id</label>
 
-        <input #name
-               name="name"
-               type="text"
-               placeholder="Nombre Proyecto" />
+        <input #id
+               name="id"
+               type="number"
+               placeholder="Id Proyecto" />
 
       </section>
 
       <input value="Buscar"
              type="submit"
-             (click)="findProjectByName(name.value)" />
+             (click)="findProjectById(id.value)" />
 
     </fieldset>
 

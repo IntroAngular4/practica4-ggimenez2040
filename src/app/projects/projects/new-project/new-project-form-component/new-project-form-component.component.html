@@ -8,17 +8,6 @@
 
       <section>
 
-        <label for="id">Id</label>
-
-        <input #id
-               name="id"
-               type="number"
-               placeholder="Id proyecto" />
-
-      </section>
-
-      <section>
-
         <label for="name">Nombre</label>
 
         <input #name
@@ -30,7 +19,7 @@
 
       <input value="Guardar"
              type="submit"
-             (click)="saveProject(id.value,name.value)" />
+             (click)="saveProject(name.value)" />
 
     </fieldset>
 

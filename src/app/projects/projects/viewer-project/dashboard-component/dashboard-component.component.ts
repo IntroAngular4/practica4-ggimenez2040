@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Project } from '../../../../shared/models/project.model';
+import { ProjectApi } from '../../../../shared/models/project-api.model';
 
 @Component({
   selector: 'app-dashboard-component',
@@ -7,7 +7,7 @@ import { Project } from '../../../../shared/models/project.model';
   styleUrls: ['./dashboard-component.component.css']
 })
 export class DashboardComponentComponent implements OnInit {
-  @Input() public projects: Project[] = [];
+  @Input() public projects: ProjectApi[] = [];
   @Input() public projectId: string;
 
   constructor() {}

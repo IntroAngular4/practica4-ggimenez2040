@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Project } from '../../../../shared/models/project.model';
+import { ProjectApi } from '../../../../shared/models/project-api.model';
 
 @Component({
   selector: 'app-projects-list-component',
@@ -7,7 +7,7 @@ import { Project } from '../../../../shared/models/project.model';
   styleUrls: ['./projects-list-component.component.css']
 })
 export class ProjectsListComponentComponent implements OnInit {
-  @Input() public projects: Project[] = [];
+  @Input() public projects: ProjectApi[] = [];
 
   constructor() {}
 

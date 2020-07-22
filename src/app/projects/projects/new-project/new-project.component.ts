@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectsService } from '../../../core/services/projects.service';
-import { Project } from '../../../shared/models/project.model';
+import { ProjectApi } from '../../../shared/models/project-api.model';
 
 @Component({
   selector: 'app-new-project',
@@ -8,16 +8,18 @@ import { Project } from '../../../shared/models/project.model';
   styleUrls: ['./new-project.component.css']
 })
 export class NewProjectComponent implements OnInit {
-  public projects: Project[] = [];
-  public formHidden = false;
+  public projects: ProjectApi[] = [];
 
   constructor(private projectsService: ProjectsService) {}
 
   ngOnInit(): void {
-    this.projects = this.projectsService.projects;
+    this.projectsService.projects.subscribe(res => (this.projects = res as ProjectApi[]));
   }
 
-  public saveProject(project: Project) {
-    this.projectsService.saveProject(project);
+  public saveProject(name: string) {
+    this.projectsService.saveProject(name).subscribe(data => {
+      const project: ProjectApi = data as ProjectApi;
+      this.projects.push(project);
+    });
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectsService } from '../../../core/services/projects.service';
-import { Project } from '../../../shared/models/project.model';
+import { ProjectApi } from '../../../shared/models/project-api.model';
 
 @Component({
   selector: 'app-viewer-project',
@@ -9,9 +9,7 @@ import { Project } from '../../../shared/models/project.model';
   styleUrls: ['./viewer-project.component.css']
 })
 export class ViewerProjectComponent implements OnInit {
-  public projects: Project[] = [];
-  public project: Project;
-  public formHidden = false;
+  public projects: ProjectApi[] = [];
   public projectId = '';
 
   constructor(private projectsService: ProjectsService, activateRoute: ActivatedRoute) {
@@ -19,10 +17,14 @@ export class ViewerProjectComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.projects = this.projectsService.projects;
+    this.projectsService.projects.subscribe(res => (this.projects = res as ProjectApi[]));
   }
 
-  public findProject(name: string) {
-    this.projects = this.projects.filter(p => p.name.includes(name) === true);
+  public findProject(id: number) {
+    this.projectsService.findProject(id).subscribe(data => {
+      const project: ProjectApi = data as ProjectApi;
+      this.projects = [];
+      this.projects.push(project);
+    });
   }
 }

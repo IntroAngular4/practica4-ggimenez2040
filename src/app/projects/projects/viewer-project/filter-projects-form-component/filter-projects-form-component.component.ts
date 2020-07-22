@@ -6,12 +6,12 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./filter-projects-form-component.component.css']
 })
 export class FilterProjectsFormComponentComponent implements OnInit {
-  @Output() public findProject = new EventEmitter<string>();
+  @Output() public findProject = new EventEmitter<number>();
   constructor() {}
 
   ngOnInit(): void {}
 
-  public findProjectByName(name: string) {
-    this.findProject.emit(name);
+  public findProjectById(id: number) {
+    this.findProject.emit(id);
   }
 }
