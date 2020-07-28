@@ -2,26 +2,15 @@
 
   <h3>Buscar proyecto</h3>
 
-  <form>
+  <form [formGroup]="filterForm">
 
-    <fieldset>
+    <label for="id">Id Proyecto</label>
 
-      <section>
+    <input name="id" formControlName="id" type="number"/>
+    <span>{{ getError('id')}}</span>
 
-        <label for="id">Id</label>
-
-        <input #id
-               name="id"
-               type="number"
-               placeholder="Id Proyecto" />
-
-      </section>
-
-      <input value="Buscar"
-             type="submit"
-             (click)="findProjectById(id.value)" />
-
-    </fieldset>
+    <button (click)="findProjectById()"
+    [disabled]="filterForm.invalid">Buscar</button>
 
   </form>
 

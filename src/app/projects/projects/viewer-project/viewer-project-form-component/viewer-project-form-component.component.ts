@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-viewer-project-form-component',
@@ -7,8 +8,17 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ViewerProjectFormComponentComponent implements OnInit {
   @Input() public projectId: string;
+  public viewForm: FormGroup;
 
-  constructor() {}
+  constructor(private formBuilder: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.buildForm();
+  }
+
+  private buildForm() {
+    this.viewForm = this.formBuilder.group({
+      id: ['', []]
+    });
+  }
 }

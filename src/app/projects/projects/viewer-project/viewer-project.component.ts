@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NotificationsStoreService } from '../../../core/services/notifications-store.service';
 import { ProjectsService } from '../../../core/services/projects.service';
 import { ProjectApi } from '../../../shared/models/project-api.model';
 
@@ -12,7 +13,11 @@ export class ViewerProjectComponent implements OnInit {
   public projects: ProjectApi[] = [];
   public projectId = '';
 
-  constructor(private projectsService: ProjectsService, activateRoute: ActivatedRoute) {
+  constructor(
+    activateRoute: ActivatedRoute,
+    private projectsService: ProjectsService,
+    private notificationsStore: NotificationsStoreService
+  ) {
     this.projectId = activateRoute.snapshot.params.id;
   }
 
@@ -21,6 +26,8 @@ export class ViewerProjectComponent implements OnInit {
   }
 
   public findProject(id: number) {
+    this.notificationsStore.dispatch('Buscando proyecto con id = ' + id.toString);
+
     this.projectsService.findProject(id).subscribe(data => {
       const project: ProjectApi = data as ProjectApi;
       this.projects = [];

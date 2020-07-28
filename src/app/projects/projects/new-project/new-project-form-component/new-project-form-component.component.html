@@ -1,28 +1,13 @@
-<div>
-
   <h3>Nuevo proyecto</h3>
 
-  <form>
+  <form [formGroup]="newProjectForm">
 
-    <fieldset>
+    <label for="name">Nombre</label>
 
-      <section>
+    <input name="name" formControlName="name" type="text"/>
+    <span>{{ getError('name')}}</span>
 
-        <label for="name">Nombre</label>
-
-        <input #name
-               name="name"
-               type="text"
-               placeholder="Nombre Proyecto" />
-
-      </section>
-
-      <input value="Guardar"
-             type="submit"
-             (click)="saveProject(name.value)" />
-
-    </fieldset>
+    <button (click)="saveProject()"
+    [disabled]="newProjectForm.invalid">Guardar</button>
 
   </form>
-
-</div>
