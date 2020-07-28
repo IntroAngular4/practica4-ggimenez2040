@@ -1,7 +1,8 @@
-<div>
+<br/>
+<div class="container">
   <h1>Lista de Proyectos</h1>
 
-  <p *ngIf="projects.length>0;else sinProyectos">Actualmente tenemos {{projects.length}} proyectos vigentes</p>
+  <p *ngIf="projects && projects.length && projects.length>0;else sinProyectos">Actualmente tenemos {{projects.length}} proyectos vigentes</p>
 
   <ng-template #sinProyectos>
     <p>Sin proyectos</p>
@@ -23,3 +24,4 @@
   </table>
 
 </div>
+<br/>

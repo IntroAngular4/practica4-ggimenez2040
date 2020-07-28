@@ -1,13 +1,14 @@
-<div>
+<br/>
+<div class="container">
 
   <h3>Buscar proyecto</h3>
 
-  <form [formGroup]="filterForm">
+  <form class="form-group" [formGroup]="filterForm">
 
-    <label for="id">Id Proyecto</label>
+    <label for="id">Id Proyecto </label>
 
-    <input name="id" formControlName="id" type="number"/>
-    <span>{{ getError('id')}}</span>
+    <input class="form-control" name="id" formControlName="id" type="number"/>
+    <span> {{ getError('id')}}</span>
 
     <button (click)="findProjectById()"
     [disabled]="filterForm.invalid">Buscar</button>
@@ -15,3 +16,4 @@
   </form>
 
 </div>
+<br/>
